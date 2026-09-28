@@ -153,8 +153,7 @@ public class TrainingApplicationRepositoryImpl
 
             int affectedRows = statement.executeUpdate();
 
-            if (affectedRows == 0) {
-                throw new RuntimeException(
+            if (affectedRows == 0) {                throw new RuntimeException(
                         "Заявка с ID " + application.getId() + " не найдена"
                 );
             }

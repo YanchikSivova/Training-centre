@@ -12,7 +12,9 @@ import org.example.service.TrainingApplicationService;
 import org.example.service.UserService;
 import org.example.util.ExcelExporter;
 
+import java.io.Console;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.List;
@@ -31,7 +33,11 @@ public class ConsoleUI {
             TrainingApplicationService applicationService,
             StatisticsService statisticsService
     ) {
-        this.scanner = new Scanner(System.in);
+        Console console = System.console();
+        this.scanner = new Scanner(
+                System.in,
+                console == null ? StandardCharsets.UTF_8 : console.charset()
+        );
         this.userService = userService;
         this.applicationService = applicationService;
         this.statisticsService = statisticsService;
